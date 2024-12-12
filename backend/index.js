@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',  
+    origin: 'https://ai-project-dun-kappa.vercel.app',  
     credentials: true,              
   }));
 app.use(cookieParser());
