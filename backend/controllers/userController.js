@@ -84,12 +84,10 @@ export const verifyOtp = async (req, res) => {
         await user.save();
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         res.cookie('token', token, {
-            httpOnly:true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: 'None',
-            path: '/'
+            sameSite: 'Strict',
         });
-        return res.status(200).json({ success: true, token, user: { name: user.name }, message: "Email verified succesfully" })
+        return res.status(200).json({ success: true, user: { name: user.name }, message: "Email verified succesfully" })
 
     } catch (error) {
         console.log("error in verifyotp controller", error);
@@ -100,10 +98,8 @@ export const verifyOtp = async (req, res) => {
 export const logoutUser = async (req, res) => {
     try {
         res.clearCookie('token', {
-            httpOnly:true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: 'None',
-            path: '/'
+            sameSite: 'Strict',
         });
 
         res.json({ success: true, message: "Logged out successfully" });
