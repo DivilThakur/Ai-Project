@@ -3,6 +3,8 @@ import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Cookie from 'js-cookie'
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { use } from "react";
 
 export const AppContext = createContext();
 
@@ -56,7 +58,8 @@ const AppContextProvider = (props) => {
 
 
     useEffect(() => { 
-        const StoredToken = Cookie.get('token');
+        const StoredToken = Cookies.get('token');
+        console.log("stored token",StoredToken);
         if (StoredToken) {
             setToken(StoredToken);
         }

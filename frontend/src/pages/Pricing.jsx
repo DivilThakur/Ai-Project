@@ -36,7 +36,7 @@ function Pricing() {
       receipt: order.receipt,
       handler: async (response) => {
         try {
-          const { data } = await axios.post(backendUrl + "/api/user/verify-pay", response, { headers: { Authorization: `Bearer ${token}` } });
+          const { data } = await axios.post(backendUrl + "/api/user/verify-pay", response, { withCredentials: true });
 
           if (data.success) {
             loadUserCredits();
@@ -68,7 +68,7 @@ function Pricing() {
       }));
 
       const { data } = await axios.post(backendUrl + '/api/user/razor-pay', { planId }, {
-        headers: { Authorization: `Bearer ${token}` }
+        withCredentials: true
       })
       if (data.success) {
         initPay(data.order);
