@@ -85,7 +85,7 @@ export const verifyOtp = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         res.cookie('token', token, {
             secure: process.env.NODE_ENV === "production",
-            sameSite: 'Strict',
+            sameSite: 'None',
         });
         return res.status(200).json({ success: true, user: { name: user.name }, message: "Email verified succesfully" })
 
@@ -99,7 +99,7 @@ export const logoutUser = async (req, res) => {
     try {
         res.clearCookie('token', {
             secure: process.env.NODE_ENV === "production",
-            sameSite: 'Strict',
+            sameSite: 'None',
         });
 
         res.json({ success: true, message: "Logged out successfully" });
