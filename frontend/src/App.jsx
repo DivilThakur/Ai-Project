@@ -18,7 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/generate" element={<PrivateRoute />} >
-          <Route path="" element={<Result />} />
+          <Route index element={<Result />} />
         </Route>
       </Routes>
 
