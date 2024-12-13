@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Login() {
 
-    const { setShowLogin, backendUrl, setToken, setUser } = useContext(AppContext);
+    const { setShowLogin, backendUrl, setToken, setUser, token } = useContext(AppContext);
     const [state, setState] = useState('Sign up');
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -17,6 +17,12 @@ function Login() {
     const [showVerification, setShowVerification] = useState(false);
     const [otp, setOtp] = useState(["", "", "", ""]);
     const inputRefs = useRef([]);
+
+    useEffect(() => {
+        if (inputRefs.current[0]) {
+            inputRefs.current[0].focus();
+        }
+    }, [])
 
     const handleOtpChange = (e, index) => {
         const value = e.target.value;
@@ -43,6 +49,8 @@ function Login() {
         const Code = otp.join("");
         if (otp.length === 4 && /^\d{4}$/.test(Code)) {
             const { data } = await axios.post(backendUrl + '/api/user/verify-otp', { Code }, { withCredentials: true });
+            console.log("data after verify", data);
+            console.log("token",token);
             if (data.success) {
                 setToken(data.token);
                 setUser(data.user)
@@ -95,11 +103,7 @@ function Login() {
     })
 
 
-    useEffect(() => {
-        if (inputRefs.current[0]) {
-            inputRefs.current[0].focus();
-        }
-    }, [])
+   
 
     return (
         <div className=' absolute top-0 left-0 right-0 bottom-0 z-30 backdrop-blur-sm bg-black/35 flex justify-center items-center' >

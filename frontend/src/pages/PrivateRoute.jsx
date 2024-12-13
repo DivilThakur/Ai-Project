@@ -12,9 +12,7 @@ const PrivateRoute = () => {
     } else {
         setShowLogin(true);
         navigate("/")
-
     }
-
 
 }
 

@@ -18,12 +18,7 @@ const AppContextProvider = (props) => {
 
     const loadUserCredits = async () => {
         try {
-            const { data } = await axios.get(backendUrl + '/api/user/credits', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                withCredentials: true,
-            });
+            const { data } = await axios.get(backendUrl + '/api/user/credits', { withCredentials: true });
             if (data.success) {
                 setCredit(data.credits);
                 setUser(data.user)
@@ -43,9 +38,8 @@ const AppContextProvider = (props) => {
 
 
     const generateImage = async (prompt) => {
-        console.log("token",token);
         try {
-            const { data } = await axios.post(backendUrl + "/api/image/generate-image", { prompt }, { headers: { Authorization: `Bearer ${token}` } })
+            const { data } = await axios.post(backendUrl + "/api/image/generate-image", { prompt }, { withCredentials: true })
             if (data.success) {
                 loadUserCredits();
                 return data.resultImage;
@@ -61,7 +55,7 @@ const AppContextProvider = (props) => {
     }
 
 
-    useEffect(() => { // after refresh setting token back to var if available
+    useEffect(() => { 
         const StoredToken = Cookie.get('token');
         if (StoredToken) {
             setToken(StoredToken);
