@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: 'https://ai-project-blue.vercel.app/',  
+    origin: 'https://ai-project-blue.vercel.app',  
     credentials: true,              
   }));
 app.use(cookieParser());
