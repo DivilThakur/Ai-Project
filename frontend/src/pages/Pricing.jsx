@@ -12,12 +12,11 @@ import axios from 'axios'
 
 function Pricing() {
 
-
   useEffect(() => {
     window.scrollTo(0, 0);
   })
 
-  const { showLogin, setShowLogin, user, backendUrl, token, loadUserCredits } = useContext(AppContext);
+  const { showLogin, setShowLogin, user, backendUrl, loadUserCredits } = useContext(AppContext);
   const [loadingStates, setLoadingStates] = useState({});
   const navigate = useNavigate();
 
@@ -36,7 +35,7 @@ function Pricing() {
       receipt: order.receipt,
       handler: async (response) => {
         try {
-          const { data } = await axios.post(backendUrl + "/api/user/verify-pay", response, { withCredentials: true });
+          const { data } = await axios.post(backendUrl + "/api/user/verify-pay", response);
 
           if (data.success) {
             loadUserCredits();
@@ -67,9 +66,7 @@ function Pricing() {
         [planId]: true, // Set loading state for the specific plan
       }));
 
-      const { data } = await axios.post(backendUrl + '/api/user/razor-pay', { planId }, {
-        withCredentials: true
-      })
+      const { data } = await axios.post(backendUrl + '/api/user/razor-pay', { planId }, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
       if (data.success) {
         initPay(data.order);
       } else {

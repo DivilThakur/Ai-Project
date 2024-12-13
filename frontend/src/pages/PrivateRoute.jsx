@@ -10,8 +10,8 @@ const PrivateRoute = () => {
     if (token) {
         return <Outlet />
     } else {
-        setShowLogin(true);
         navigate("/")
+        setShowLogin(true);
     }
 
 }

@@ -36,7 +36,7 @@ function Welcome() {
                     <h1 className='font-Inter text-lg text-neutral-600 sm:text-xl font-medium'>Welcome</h1>
                     <h1 className='font-Syne font-bold text-3xl lg:text-5xl lg:w-3/4 '>Easy ways to use AI tools, and tools to build AI.</h1>
                     <p className='font-Inter sm:font-normal sm:text-xl lg:w-3/4'>Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-                    <button onClick={()=>navigate("/user")} className='btn-grad'>Welcome</button>
+                    <button onClick={()=>navigate("/generate")} className='btn-grad'>Welcome</button>
                 </motion.div>
             </div> 
             <motion.div

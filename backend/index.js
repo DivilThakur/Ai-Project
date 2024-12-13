@@ -13,10 +13,7 @@ const app = express();
 
 
 app.use(express.json());
-app.use(cors({
-    origin: 'https://ai-project-blue.vercel.app',  
-    credentials: true,              
-  }));
+app.use(cors());
 app.use(cookieParser());
 await connectDb()
 

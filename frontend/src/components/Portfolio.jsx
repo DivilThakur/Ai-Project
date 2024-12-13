@@ -19,7 +19,7 @@ function Portfolio() {
                     <p className=' text-xs lg:text-2xl px-6 md:p-4 text-center  '>Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
                 </div>
                 <div className='block'>
-                    <button onClick={() => navigate("/user")} className=' btn-grad'>Generate</button>
+                    <button onClick={() => navigate("/generate")} className=' btn-grad'>Generate</button>
                 </div>
             </div>
 

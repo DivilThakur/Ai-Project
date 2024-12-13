@@ -26,7 +26,7 @@ function Header() {
                     transition={{ delay: 0.6, duration: 1 }}
                     className=' mx-2 text-sm sm:text-xl text-white text-center font-Syne font-semibold'>Create Anything - AI With No Restrictions.</motion.p>
                 <motion.button
-                onClick={()=>navigate("/user")}
+                onClick={()=>navigate("/generate")}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8, duration: 0.8 }}

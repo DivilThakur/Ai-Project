@@ -7,7 +7,7 @@ function Navbar() {
 
     
     const [scrolled, setScrolled] = useState(false);
-    const { showLogin, setShowLogin , logout , user } = useContext(AppContext);
+    const { setShowLogin , logout , user } = useContext(AppContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,7 +18,6 @@ function Navbar() {
                 setScrolled(false);
             }
         }
-
         window.addEventListener('scroll', handleScroll);
 
         return () => {

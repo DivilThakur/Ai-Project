@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Login() {
 
-    const { setShowLogin, backendUrl, setToken, setUser, token } = useContext(AppContext);
+    const { setShowLogin, backendUrl, setToken, setUser } = useContext(AppContext);
     const [state, setState] = useState('Sign up');
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -48,11 +48,10 @@ function Login() {
         e.preventDefault();
         const Code = otp.join("");
         if (otp.length === 4 && /^\d{4}$/.test(Code)) {
-            const { data } = await axios.post(backendUrl + '/api/user/verify-otp', { Code }, { withCredentials: true });
-            console.log("data after verify", data);
-            console.log("token",token);
+            const { data } = await axios.post(backendUrl + '/api/user/verify-otp', { Code });
             if (data.success) {
                 setToken(data.token);
+                localStorage.setItem('token', data.token);
                 setUser(data.user)
                 setShowVerification(false);
                 setShowLogin(false);
@@ -69,7 +68,7 @@ function Login() {
         try {
             setLoader(true);
             if (state === "Login") {
-                const { data } = await axios.post(backendUrl + "/api/user/login", { email, password }, { withCredentials: true });
+                const { data } = await axios.post(backendUrl + "/api/user/login", { email, password });
                 if (data.success) {
                     setLoader(false);
                     setShowVerification(true);
@@ -103,7 +102,7 @@ function Login() {
     })
 
 
-   
+
 
     return (
         <div className=' absolute top-0 left-0 right-0 bottom-0 z-30 backdrop-blur-sm bg-black/35 flex justify-center items-center' >
